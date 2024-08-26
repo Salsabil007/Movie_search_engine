@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movie Ratings</title>
+</head>
+<body>
+    <h1>Find Rating for a Movie and Director</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Search</button>
+    </form>
+
+    {% if rating %}
+        <h2>Rating:</h2>
+        <ul>
+            {% for rate in rating %}
+                <li>{{ rate.imdb_rating }}</li>
+            {% endfor %}
+        </ul>
+    {% elif rating is not None %}
+        <p>No rating found for this movie and director.</p>
+    {% endif %}
+</body>
+</html>
+

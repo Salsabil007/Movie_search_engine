@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  background: #555;
+}
+
+.content {
+  max-width: 500px;
+  margin: auto;
+  background: white;
+  padding: 10px;
+}
+</style>
+</head>
+<body>
+<div class="content">
+    <h1>Find Movies by Actor and Director</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Search</button>
+    </form>
+
+    {% if movies %}
+        <h2>Movies:</h2>
+        <ul>
+            {% for movie,actor,director in movies %}
+                <li>{{ movie }} - {{ actor}} - {{director}}</li>
+            {% endfor %}
+        </ul>
+    {% elif movies is not None %}
+        <p>No movie exists with this actor and director together in the database.</p>
+    {% endif %}
+</div>
+</body>
+</html>

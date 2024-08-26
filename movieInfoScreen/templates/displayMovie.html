@@ -1,0 +1,111 @@
+<!-- movieInfoScreen/templates/movie_details.html 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ movie.title }} ({{ movie.year }})</title>
+</head>
+<body>
+    <h1>{{ movie.title }}({{ movie.year }})</h1>
+    <p><strong>Director:</strong> {{ movie.directorName }}</p>
+    <p><strong>Genre:</strong> {{ movie.genre }}</p>
+    <img src="{{ movie.imdbPictureURL }}" alt="Poster for {{ movie.title }}" style="max-width: 100%; height: auto;">
+</body>
+</html>-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ movie.title }} ({{ movie.year }})</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            background-color: #e0e0e0; /* Light grey */
+            padding: 10px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .rating {
+            font-size: 1.2em;
+            color: #666;
+            background-color: #d0d0d0; /* Slightly darker grey */
+            padding: 5px 10px;
+            border-radius: 4px;
+            margin-left: 20px; /* Push it to the right */
+        }
+        .details {
+            margin-bottom: 20px;
+        }
+        .details p {
+            font-size: 1.2em;
+            margin: 10px 0;
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .details strong {
+            display: inline-block;
+            width: 120px;
+        }
+        .tags {
+            margin-top: 20px;
+            font-size: 0.9em;
+        }
+        .tags span {
+            display: inline-block;
+            background-color: #f0e04b; /* Light yellow background */
+            padding: 5px 10px;
+            margin-right: 5px;
+            border-radius: 4px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-top: 20px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>{{ movie.title }}({{ movie.year }})<span class="rating">{{ movie.rating }}/10</span></h1>
+        <div class="details">
+            <p><strong>Director:</strong> {{ movie.directorName }}</p>
+            <p><strong>Genre:</strong> {{ movie.genre }}</p>
+        </div>
+        
+        <div class="tags">
+            <span>{{ movie.tag1 }}</span>
+            <span>{{ movie.tag2 }}</span>
+            <span>{{ movie.tag3 }}</span>
+            <span>{{ movie.tag4 }}</span>
+        </div>
+        <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/73DEEEC5C4139514C5E579B02CE910D148A5CD21E6583F2E42071DDA3FC3ACBE/scale?width=506&amp;aspectRatio=2.00&amp;format=webp" alt="Poster for {{ movie.title }}">
+        
+    </div>
+</body>
+</html>
+
+

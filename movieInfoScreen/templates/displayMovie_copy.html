@@ -1,0 +1,176 @@
+<!-- movieInfoScreen/templates/movie_details.html 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ movie.title }} ({{ movie.year }})</title>
+</head>
+<body>
+    <h1>{{ movie.title }}({{ movie.year }})</h1>
+    <p><strong>Director:</strong> {{ movie.directorName }}</p>
+    <p><strong>Genre:</strong> {{ movie.genre }}</p>
+    <img src="{{ movie.imdbPictureURL }}" alt="Poster for {{ movie.title }}" style="max-width: 100%; height: auto;">
+</body>
+</html>-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ movie.title }} ({{ movie.year }})</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            background-color: #e0e0e0; 
+            padding: 10px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .rating {
+            font-size: 1.2em;
+            color: #666;
+            background-color: #d0d0d0; 
+            padding: 5px 10px;
+            border-radius: 4px;
+            margin-left: 20px; 
+        }
+        .details {
+            margin-bottom: 20px;
+            margin-top: 20px;
+        }
+        .details p {
+            font-size: 1.2em;
+            margin: 10px 0;
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .details strong {
+            display: inline-block;
+            width: 120px;
+        }
+        .tags {
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #ffffff;
+        }
+        .tags span {
+            display: inline-block;
+            background-color: #6551a1; 
+            padding: 5px 10px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            border-radius: 4px;
+        }
+        .actors {
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #000000;
+        }
+        .actors span {
+            display: inline-block;
+            background-color: #d4c6ff; 
+            padding: 4px 6px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            border-radius: 4px;
+        }
+        .loc {
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #000000;
+        }
+        .loc span {
+            display: inline-block;
+            background-color: #d4c6ff; 
+            padding: 4px 6px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            border-radius: 4px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: auto;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            
+            
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>{{ movie.info.title }} ({{ movie.info.year }})<a href="{% url 'add_rating' movie.movieID %}" class="add-rating-button">Add Rating</a>
+            <span class="rating">{{ movie.rating | floatformat:1 }}/5</span></h1>
+        <div class="details">
+            <p><strong>Director:</strong> {{ movie.director }}</p>
+            <p><strong>Genre:</strong> {{ movie.info.genre }}</p>
+          
+            
+        </div>
+        
+        <div class="tags">
+            {% for tag in movie.tags %}
+                <span>{{ tag }}</span>
+            {% empty %}
+                <p>No tags available.</p>
+            {% endfor %}
+        </div>
+	<div style="text-align: center;">
+            <img id="movie-image" src="{{ movie.info.imdb_picture_url }}" style="width:300px;height:400px;">
+        </div>
+
+	<script>
+	    let imgElement = document.getElementById('movie-image');
+	    imgElement.src = imgElement.src.replace("http://", "https://");
+	</script>
+
+        <div class="details">
+            <strong>Features:</strong>
+        </div>
+        <div class="actors">
+            {% for actor in movie.actors %}
+                <span>{{ actor }}</span>
+            {% empty %}
+                <p>No actors available.</p>
+            {% endfor %}
+        </div>
+        <div class="details">
+            <strong>Locations:</strong>
+        </div>
+        <div class="loc">
+            {% for l in movie.info.loc1 %}
+                <span>{{ l }}</span>
+            {% empty %}
+                <p>No location information available.</p>
+            {% endfor %}
+        </div>
+
+    </div>
+</body>
+</html>
+
+

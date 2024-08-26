@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  background: #555;
+}
+
+.content {
+  max-width: 500px;
+  margin: auto;
+  background: white;
+  padding: 10px;
+}
+</style>
+</head>
+<body>
+<div class="content">
+    <h1>Find Lead Actors By Movie Title</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Search</button>
+    </form>
+
+    {% if actors %}
+        <h2>Lead Actors:</h2>
+        <ul>
+            {% for actor in actors %}
+                <li>{{ actor}}</li>
+            {% endfor %}
+        </ul>
+    {% elif actors is not None %}
+        <p>No movie exists with the entered title in the database.</p>
+    {% endif %}
+</div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movies by Director</title>
+</head>
+<body>
+    <h1>Find Movies by Director</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Search</button>
+    </form>
+
+    {% if movies %}
+        <h2>Movies:</h2>
+        <ul>
+            {% for movie in movies %}
+                <li>{{ movie.0 }}</li>
+            {% endfor %}
+        </ul>
+    {% elif movies is not None %}
+        <p>No movies found for this director.</p>
+    {% endif %}
+</body>
+</html>

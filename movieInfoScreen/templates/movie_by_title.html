@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  background: #555;
+}
+
+.content {
+  max-width: 500px;
+  margin: auto;
+  background: white;
+  padding: 10px;
+}
+</style>
+</head>
+<body>
+<div class="content">
+    <h1>Find Movies by Title</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Search</button>
+    </form>
+
+    {% if message %}
+        <p>{{ message }}</p>
+    {% endif %}
+
+    {% if results %}
+        <h2>Movies:</h2>
+        <ul>
+            {% for movie in results %}
+                <li>
+                    <a href="{% url 'displayMovie' movie.movieID %}">{{ movie.title }}</a> - {{ movie.year }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% elif request.method == 'POST' %}
+        <p>No movies found for this title in the database.</p>
+    {% endif %}
+</div>
+</body>
+</html>
