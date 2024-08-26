@@ -243,7 +243,7 @@ def SearchPageView(request):
     return render(request, 'movies/search.html')
 
 
-def actor_and_director_search_project(request): #Daniel Addition
+def actor_and_director_search_project(request): 
     form = ActorAndDirectorForm()
     movies = None
     if request.method == 'POST':
@@ -266,7 +266,7 @@ def actor_and_director_search_project(request): #Daniel Addition
     
     return render(request, 'movies/movie_by_actor_and_director.html', {'form': form, 'movies': movies})
 
-def actor_search_between_years_project(request): #Daniel addition
+def actor_search_between_years_project(request): 
     form = ActorBetweenYearsForm()
     movies = None
     if request.method == 'POST':
@@ -289,7 +289,7 @@ def actor_search_between_years_project(request): #Daniel addition
     
     return render(request, 'movies/movie_by_actor_between_years.html', {'form': form, 'movies': movies})
 
-def lead_actors_search_project(request):#DANIEL addition
+def lead_actors_search_project(request):
     form = LeadActorsForm()
     actors = None
     if request.method == 'POST':
@@ -313,7 +313,7 @@ def lead_actors_search_project(request):#DANIEL addition
                 actors = [row[0] for row in result]
     
     return render(request, 'movies/lead_actors_by_movie.html', {'form': form, 'actors': actors})
-#DANIEL ADDITION
+
 def actor_search_by_genre_project(request):
     form = ActorAndGenreForm()
     movies = None
